@@ -27,3 +27,12 @@ steps:
       # Test changes
       Get-Content $(build_cake)
   displayName: Result test
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      Write-Host "1"
+      Write-Host $env:HOST_NETWORK_ADDRESS
+      Write-Host "2"
+      Write-Host $(HOST_NETWORK_ADDRESS))
