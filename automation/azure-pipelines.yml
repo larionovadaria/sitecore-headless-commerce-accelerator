@@ -13,6 +13,9 @@ variables:
 
 steps:
 
+- task: UseNode@1
+  inputs:
+
 - task: CmdLine@2
   inputs:
     script: '"C:\Program Files\nodejs\npm.cmd" config list'
