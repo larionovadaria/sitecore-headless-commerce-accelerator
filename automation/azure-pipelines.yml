@@ -16,14 +16,20 @@ steps:
 - task: UseNode@1
   inputs:
     script: '"C:\Program Files\nodejs\npm.cmd" --version'
+  displayName: Installing Node 10
 
-
+- task: DownloadSecureFile@1
+  name: license_file
+  inputs:
+    secureFile: 'license.xml'
+  displayName: Download license
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
       (Get-Content $(build_cake)) -replace "MSBuildToolVersion.VS201\d{1,3}", $env:agent_buildTools | Set-Content $(build_cake)
       (Get-Content $(build_cake)) -replace "$(default_ip)", $env:HOST_NETWORK_ADDRESS | Set-Content $(build_cake)
+      move $(license_file.secureFilePath) ./src/
   displayName: Config preparation
 
 - task: PowerShell@2
