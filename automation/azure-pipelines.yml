@@ -35,4 +35,4 @@ steps:
       Write-Host "1"
       Write-Host $env:HOST_NETWORK_ADDRESS
       Write-Host "2"
-      Write-Host $(HOST_NETWORK_ADDRESS))
+      Write-Host $(HOST_NETWORK_ADDRESS)
