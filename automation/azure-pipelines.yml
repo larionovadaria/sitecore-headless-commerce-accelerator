@@ -41,25 +41,17 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      # Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Confirm:$False -Force
-      # Install-Module -Name CredentialManager -Repository PSGallery -Confirm:$False -Force
-      $secure_password = "$(user_password)" | ConvertTo-SecureString -AsPlainText -Force
-      # New-StoredCredential -Target $env:HOST_NETWORK_ADDRESS -Username $(user_name) -Password $secure_password
       cmdkey /add:$(HOST_NETWORK_ADDRESS) /user:$(user_name) /pass:$(user_password)
   displayName: Add windows credentials to agent
 
 - task: PowerShell@2
   inputs:
-    targetType: 'inline'
-    script: 'copy ./README.md \\$env:HOST_NETWORK_ADDRESS\c$\inetpub'
+    filePath: './src/build.ps1'
+    workingDirectory: './src/'
+  displayName: Build
 
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: 'cmdkey /delete:$env:HOST_NETWORK_ADDRESS'
   displayName: Remove windows credentials from agent
-
-#- task: PowerShell@2
-#  inputs:
-#    filePath: './src/build.ps1'
-#    workingDirectory: './src/'
