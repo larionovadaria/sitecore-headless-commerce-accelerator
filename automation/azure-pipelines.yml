@@ -39,5 +39,23 @@ steps:
 
 - task: PowerShell@2
   inputs:
-    filePath: './src/build.ps1'
-    workingDirectory: './src/'
+    targetType: 'inline'
+    script: |
+      Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Confirm:$False -Force
+      Install-Module -Name CredentialManager -Repository PSGallery -Confirm:$False -Force
+      New-StoredCredential -Target test.target -Username $(user_name) -Password $(user_password)
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'copy ./README.md \\51.116.178.193\c$'
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'Remove-StoredCredential -Target test.target'
+
+#- task: PowerShell@2
+#  inputs:
+#    filePath: './src/build.ps1'
+#    workingDirectory: './src/'
