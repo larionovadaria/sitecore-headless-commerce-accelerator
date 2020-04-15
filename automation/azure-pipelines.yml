@@ -47,6 +47,7 @@ steps:
 - task: PowerShell@2
   inputs:
     filePath: './src/build.ps1'
+    errorActionPreference: 'continue'
     workingDirectory: './src/'
   displayName: Build
 
