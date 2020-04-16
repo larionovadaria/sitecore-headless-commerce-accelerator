@@ -75,6 +75,7 @@ header#header-main{
       display: block;
       width: 77px;
       margin: 8px auto;
+      height: auto;
     }
   }
 }
@@ -133,6 +134,7 @@ header#header-mobile{
     img{
       width: 114px;
       margin: 9px auto;
+      height: auto;
     }
   }
   @media (max-width: $screen-sm-max){

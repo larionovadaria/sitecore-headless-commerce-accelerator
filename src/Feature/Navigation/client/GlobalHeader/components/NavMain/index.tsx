@@ -12,6 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Image } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss/client';
@@ -35,9 +36,9 @@ export default class NavMain extends JSS.SafePureComponent<NavMainProps, NavMain
     return (
       <nav id="nav-main">
         <ul>
-          {menuItems.items &&
+          {menuItems && menuItems.items &&
             menuItems.items.map((menuItem, menuItemIndex) => {
-              const { title, image } = menuItem;
+              const { title, image, commerceCategories } = menuItem;
 
               return (
                 <li key={menuItemIndex} className={menuStyles[menuItemIndex]}>
@@ -49,8 +50,8 @@ export default class NavMain extends JSS.SafePureComponent<NavMainProps, NavMain
                         <li>
                           <span className="title">Category</span>
                         </li>
-                        {menuItem.commerceCategories.items &&
-                          menuItem.commerceCategories.items.map((category, categoryIndex) => {
+                        {commerceCategories && commerceCategories.items &&
+                          commerceCategories.items.map((category, categoryIndex) => {
                             const { name } = category;
                             const link = '/shop/' + name;
                             return (
@@ -77,7 +78,7 @@ export default class NavMain extends JSS.SafePureComponent<NavMainProps, NavMain
                     </nav>
                     <aside>
                       <a href="">
-                        <img src={image.jss.value.src} />
+                        <Image media={image.jss} />
                       </a>
                     </aside>
                   </div>
