@@ -12,24 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Mappers.Users
+namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
 {
-    using Base.Mappers;
+    using AutoMapper;
 
-    using Foundation.Account.Infrastructure.Pipelines.Login;
+    using Commerce.Mappers.Profiles;
 
-    using Models.Entities.Users;
+    using Xunit;
 
-    /// <summary>
-    /// Performs mapping for user models
-    /// </summary>
-    public interface IUserMapper : IMapper
+    public class AccountProfileTests
     {
-        /// <summary>
-        /// Maps User to existed LoginPipelineArgs
-        /// </summary>
-        /// <param name="user">User</param>
-        /// <param name="args">Login pipeline arguments</param>
-        void MapToLoginPipelineArgs(User user, LoginPipelineArgs args);
+        [Fact]
+        public void Configuration_ShouldBeValid()
+        {
+            // arrange
+            var configuration = new MapperConfiguration(cfg => { cfg.AddProfile<AccountProfile>(); });
+
+            // act, assert
+            configuration.AssertConfigurationIsValid();
+        }
     }
 }

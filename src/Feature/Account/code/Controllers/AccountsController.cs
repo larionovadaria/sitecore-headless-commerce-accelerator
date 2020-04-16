@@ -61,7 +61,7 @@ namespace Wooli.Feature.Account.Controllers
         public ActionResult AddAddress(AddressRequest request)
         {
             return this.Execute(
-                () => this.accountService.AddAddress(
+                () => this.accountService.AddAddresses(
                     this.visitorContext.ContactId,
                     this.mapper.Map<AddressRequest, Address>(request)));
         }

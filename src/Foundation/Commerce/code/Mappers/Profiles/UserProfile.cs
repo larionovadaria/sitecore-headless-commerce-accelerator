@@ -16,9 +16,9 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
 {
     using System.Linq;
 
-    using Account.Infrastructure.Pipelines.Login;
-
     using AutoMapper;
+
+    using Foundation.Account.Infrastructure.Pipelines.Login;
 
     using Models.Entities.Users;
 

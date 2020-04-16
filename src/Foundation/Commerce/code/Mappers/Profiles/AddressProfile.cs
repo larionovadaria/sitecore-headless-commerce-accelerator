@@ -32,12 +32,16 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
             this.CreateMap<Sitecore.Commerce.Entities.Party, Address>()
                 .ForMember(dest => dest.Name, opt => opt.Ignore())
                 .ForMember(dest => dest.CountryCode, opt => opt.Ignore())
+                .ForSourceMember(party => party.Company, opt => opt.Ignore())
+                .ForSourceMember(party => party.PhoneNumber, opt => opt.Ignore())
+                .ForSourceMember(party => party.Facet, opt => opt.Ignore())
                 .ReverseMap();
 
             this.CreateMap<CommerceParty, Address>()
                 .IncludeBase<Sitecore.Commerce.Entities.Party, Address>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.CountryCode, opt => opt.MapFrom(src => src.CountryCode))
+                .ForSourceMember(dest => dest.RegionName, opt => opt.Ignore())
                 .ReverseMap();
 
             this.CreateMap<Address, Party>()

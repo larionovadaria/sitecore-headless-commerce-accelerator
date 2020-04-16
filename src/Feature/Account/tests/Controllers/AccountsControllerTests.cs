@@ -20,7 +20,6 @@ namespace Wooli.Feature.Account.Tests.Controllers
     using Account.Controllers;
     using Account.Mappers;
 
-    using Foundation.Base.Models;
     using Foundation.Base.Models.Result;
     using Foundation.Base.Services.Tracking;
     using Foundation.Commerce.Context;
